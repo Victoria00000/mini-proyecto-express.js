@@ -1,12 +1,25 @@
-const http = require("http"); //Alternativa ES: import { createServer } from "http";
+// Importamos express ES6 // seria igual  a: const express = require("express"); en common js;
+import express from "express";
+// Importamos el array de cursos
+import { infoCursos } from "./cursos.js";
 
-const server = http.createServer((request, response) => {
-  const html = "<h2>Hello World</h2>";
-  response.end(html);
+// Inicializamos express
+const app = express();
+
+// Definimos la ruta raiz
+app.get("/", (req, res) => {
+  res.send("Hola Mundo con express");
 });
 
-const PORT = 3000; //const PORT = process.env.PORT || 3000; Normalmente está en una variable de entorno
+// Definimos la ruta de cursos
+app.get("/cursos", (req, res) => {
+  res.send(infoCursos);
+});
 
-server.listen(PORT, () => {
-  console.log(`Server is running on port: ${PORT}`);
+// Definimos el puerto
+const PORT = process.env.PORT || 3000;
+
+// Iniciamos el servidor
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
