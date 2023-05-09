@@ -33,14 +33,14 @@ export let infoCursos = {
     {
       id: 1,
       titulo: "Aprende Matematicas inicial",
-      tema: "matematicas",
+      tema: "matematicas1",
       vistas: 11000,
       nivel: "basico",
     },
     {
       id: 2,
       titulo: "Aprende Matematicas intermedio",
-      tema: "matematicas",
+      tema: "matematicas2",
       vistas: 10000,
       nivel: "intermedio",
     },
