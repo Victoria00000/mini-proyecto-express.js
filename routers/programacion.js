@@ -51,14 +51,18 @@ routerProgramacion.put("/:id", (req, res) => {
 // Realizo un PATCH para MODIFICAR un curso //
 routerProgramacion.patch("/:id", (req, res) => {
   const id = req.params.id;
-  const cursoModificado = req.body;
-  const resultado = programacion.map((curso) => {
-    if (curso.id == id) {
-      return { ...curso, ...cursoModificado };
-    }
-    return curso;
+  const nuevoValor = req.body;
+  const indice = programacion.findIndex((curso) => {
+    return curso.id == id;
   });
-  res.status(200).send(JSON.stringify(resultado));
+
+  if (indice == -1) {
+    return res.status(404).send(`"El curso ${id} no existe"`);
+  } else {
+    const cursoAModificar = programacion[indice];
+    Object.assign(cursoAModificar, nuevoValor);
+    res.status(200).send(JSON.stringify(programacion));
+  }
 });
 
 // Realizo un DELETE para ELIMINAR un curso //
